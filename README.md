@@ -1,3 +1,4 @@
-# My own example web project. 
+# Example web project. 
 Educational purposes only.
-__this is not part of any LGU's website__
+
+___this is not part of any LGU's website___
