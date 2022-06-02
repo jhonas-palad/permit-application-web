@@ -1,0 +1,68 @@
+
+.messages{
+    position: fixed;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 25%;
+    pointer-events: none;
+    z-index:0;
+    
+}
+.messages.show{
+    z-index:2;
+    display: flex;
+    pointer-events:auto;
+}
+.alert{
+    transition: transform 0.5s;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    width: 100%;
+    background-color: #7c7c7c;
+    color: white;
+    padding:10px;
+    border:1px solid transparent;
+    border-radius: 8px;
+    width:400px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.alert span:first-of-type{
+    color:#fff;
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+
+.alert-error{
+    background-color: #640003;
+}
+.alert-success{
+    background-color: var(--table-color);
+}
+
+.close-btn{
+    margin:0.5rem;
+    position: absolute;
+    right: 0;
+    top:0;
+    
+    text-align: center;
+
+}
+
+.close-btn button{
+    color: white;
+    background-color: transparent;
+    border:none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.close-btn button:hover {
+    color: rgb(94, 94, 94);
+}

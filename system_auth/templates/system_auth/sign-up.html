@@ -1,0 +1,97 @@
+{% extends 'base.html'%}
+{%load static%}
+
+{%block style%}
+    <style>
+        body{
+            background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url("{%static 'system/img/city_hall.jpg'%}");
+
+            background-size: cover;
+            background-position:center;
+            
+        }
+        
+    </style>
+    <link rel="stylesheet" href="{%static 'system_auth/css/sign-up.css'%}">
+    <link rel="stylesheet" href="{%static 'system_auth/css/auth_base.css'%}">
+{%endblock%}
+
+{%block title%}Sign-Up{%endblock%}
+
+{% block content%}
+
+<div class="container">
+
+    <div class="body-content">
+        <div class="first-col">
+            <div class="top-box">
+                Create an Account
+            </div>
+            <form action="" method="POST">
+                {%csrf_token%}
+                <div class="name-group">
+                    <div class="form-group">
+                        <input type="text" name="first_name" id="first_name_id" onkeyup="this.setAttribute('value',this.value);" value required>
+                        <label for="first_name_id">First Name</label>
+                        <div class="input-msg">First name is required</div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="last_name" id="last_name_id" onkeyup="this.setAttribute('value',this.value);" value required>
+                        <label for="last_name_id">Last Name</label>
+                        <div class="input-msg">Last Name is required</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" name="email" id="email_input_id" onkeyup="this.setAttribute('value',this.value);" value required>
+                    <label for="email_input_id">Email</label>
+                    <div class="input-msg">Email is required</div>
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" name="username" id="username_id" onkeyup="this.setAttribute('value',this.value);" value required>
+                    <label for="username_id">Username</label>
+                    <div class="input-msg">Username is required</div>
+                </div>
+                <div class="form-group">
+                    
+                    <input type="password" name="password" id="password_id" value onkeyup="this.setAttribute('value',this.value);" required>
+                    <label for="password_id">Password</label>
+                    <div class="input-msg">Password is required</div>
+                </div>
+                <div class="form-group">
+                    
+                    <input type="password" name="confirm_pass" id="confirm_pass_id" value onkeyup="this.setAttribute('value',this.value);" required>
+                    <label for="confirm_pass_id">Confirm</label>
+                    <div class="input-msg">...</div>
+                </div>
+
+                
+            </form>
+        </div>
+        <div class="second-col">
+            
+            <div class="logo-box">
+                <img src="{%static 'system/img/tc_logo.png'%}" alt="">
+            </div>
+            <div class="description-box">
+                Online Business Permit application
+            </div>
+        </div>
+        <div class="bottom-content-auth">
+            
+            <a class="bottom-link" href="{%url 'system_auth:sign-in'%}">Sign in instead</a>
+            
+            
+            <button type="button" sign-up>Sign Up</button>
+            
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock%}
+{% block scripts%}
+    <script type="module" src="{%static 'system_auth/js/sign-up.js'%}"></script>
+{%endblock%}

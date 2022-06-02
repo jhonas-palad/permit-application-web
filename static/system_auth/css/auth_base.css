@@ -1,0 +1,42 @@
+.body-content{
+    background-color: white;
+    padding:2rem;
+    border:1px solid #ccc;
+    border-radius: 8px;
+}
+
+
+.bottom-content-auth{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bottom-content-auth a{
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+    color:#1a73e8;
+    text-decoration:none;
+}
+.bottom-link{
+    padding:0.65rem;
+    border-radius: 8px;
+    
+}
+.bottom-link:hover{
+    background-color:#1a73e838;
+
+}
+.bottom-content-auth button{
+    border: 0;
+    background: #1a73e8;
+    padding:0.65rem;
+    border-radius: 8px;
+    color:#fff;
+    cursor:pointer;
+}
+
+.bottom-content-auth button:hover{
+
+    opacity: 0.6;
+}

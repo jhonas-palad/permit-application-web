@@ -1,0 +1,49 @@
+
+
+.container{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    left: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.body-content{
+    border:1px solid #ccc;
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap:1rem;
+}
+.first-col{
+    display:block;
+    position: relative;
+}
+
+.first-col .top-box{
+    margin:1rem 0.5rem;
+    font-weight: bold;
+}
+.name-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.second-col{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding:1rem;
+}
+.second-col img{
+    width:200px;
+    height:200px;
+}
+.description-box{
+    font-size:0.9rem;
+}
+

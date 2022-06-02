@@ -1,0 +1,208 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load conversion%}
+
+{% block style%}
+    <link rel="stylesheet" href="{%static 'client_application/css/permit-operation-requirements.css'%}">
+    <script type="module" src="{%static 'client_application/js/modal.js'%}" defer></script>
+    <script type="module" src="{%static 'client_application/js/files_upload.js'%}" defer></script>
+{% endblock %}
+
+{% block title%}
+    Business Permit Operation and Requirements
+{% endblock %}
+
+{% block content%}
+{%include 'side-bar.html'%}
+<div class="container">
+    <form method="POST">
+        {%csrf_token%}
+        <div class="modal" add>
+            <div class="modal-inner">
+                <div class="modal-top">
+                    <div class="modal-title">
+                        <h3>Add line of business</h3>
+                    </div>
+                    <button type="button" class="modal-close-btn">
+                        <ion-icon name="close"></ion-icon>
+                    </button>
+                </div>
+                <div class="modal-content">
+                    
+                        
+                    <div class="group" first-row>
+                        <div class="modal-form-group">
+                            <label for="id_code">Code</label>
+                            <input type="text" name="code" id="id_code" required>
+                            <div class = "input-msg">This field is required</div>
+                        </div>
+                        <div class="modal-form-group">
+                            <label for="id_capital_investment">Capital Investment</label>
+                            <input type="text" name="capital_investment" id="id_capital_investment" required>
+                            
+                            <div class = "input-msg">This field is required</div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-form-group">
+                        <label for="id_business_line">Line of business</label>
+                        <input type="text" name="business_line" id="id_business_line"  required>
+                        
+                        <div class = "input-msg">This field is required</div>
+                    </div>
+                    <div class="group" last-row>     
+                        <div class="modal-form-group">
+                            <label for="id_no_units">No. of units</label>
+                            <input type="text" name="no_units" id="id_no_units" required>
+                            
+                            <div class = "input-msg">This field is required</div>
+                        </div>
+                        <div class="modal-form-group">
+                            <label for="id_essential">Essential</label>
+                            <input type="text" name="essential" id="id_essential" >
+                            
+                            <div class = "input-msg">This field is required</div>
+                        </div>
+                        <div class="modal-form-group">
+                            <label for="id_non_essential">Non-Essential</label>
+                            <input type="text" name="non_essential" id="id_non_essential" >
+                            
+                            <div class = "input-msg">This field is required</div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-bottom">
+                    <div class="solo-btn">
+                        <button type="button" id="add-row" class="form-button add">Add</button>
+                    </div>
+                    <div class="double-btn">
+                        <button type="button" id="update-row" class="form-button add">Update</button>
+                        <button type="button" id="delete-row" class="form-button delete">Remove</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="content" first>
+            <div class="content-header-box">Business Operation</div>
+            <div class="content-body-box">
+                <table id="business-line-table" class="line-business-table">
+                    <tr class="thead">
+                        <th><div class="table-head">Code</div></th>
+                        <th><div class="table-head">Capitalization</div> </th>
+                        <th><div class="table-head">Line of business</div> </th>
+                        <th><div class="table-head">No of Units</div> </th>
+                        <th><div class="table-head">Essential</div> </th>
+                        <th><div class="table-head">Non-Essential</div> </th>
+                        
+                    </tr>
+                    {%for act in IND_BUSINESS_ACTIVITIES%}
+                    <tr class="body-row" pk="{{act.1.pk}}" index="{{act.0}}">
+                        <td value="{{act.1.code}}"><div class="table-data">{{act.1.code}}</div></td>
+                        <td value="{{act.1.capital_investment}}"><div class="table-data">{{act.1.capital_investment}}</div></td>
+                        <td value="{{act.1.business_line}}"><div class="table-data">{{act.1.business_line}}</div></td>
+                        <td value="{{act.1.no_units}}"><div class="table-data">{{act.1.no_units|stoi}}</div></td>
+                        <td value="{{act.1.essential}}"><div class="table-data">{{act.1.essential}}</div></td>
+                        <td value="{{act.1.non_essential}}"><div class="table-data">{{act.1.non_essential}}</div></td>
+                    </tr>
+
+
+                    {%endfor%}
+                    
+                    
+                    <tr>
+                        <td colspan = "7">Click the add button below to insert a new business line</td>
+                    </tr>
+                </table>
+                <div class="insert-table-btn">
+                    <button type="button" id="show-modal-add" class="form-button add">Add</button>
+                </div>
+            </div>
+        </div>
+        <div class="content" second>
+            <div class="content-header-box">Requirements</div>
+            <div class="content-body-box">
+                <div class="required-files-list">
+                    <div class="required-header">
+                        <div class="title">Upload Requirements</div>
+                        <div class="small-description">
+                            Please upload the required files to verify your application:
+                        </div>
+                        
+                    </div>
+                    <ul>
+                        {%for requirement in requirements %}
+                        <li>
+                            <div class="thumbnail">
+                                <ion-icon name="document"></ion-icon>
+                            </div>
+                            
+                            <div class="properties">
+                                <span class="title"><strong>{{requirement}}</strong></span>
+                                
+                            </div>
+                            
+
+                        </li>
+                        {%endfor%}
+                    </ul>
+                </div>
+                <div class="file-upload">
+                    <input type="file" class="file-input" accept="image/*" multiple>
+                    <div class="icon">
+                    <ion-icon name="cloud-upload"></ion-icon>
+                    </div>
+                    <h3>Drag & drop files here</h3>
+                    <span>or</span>
+                    <strong>Browse</strong>
+                    <button class="remove">
+                        <ion-icon name="add"></ion-icon>
+                    </button>
+                </div>
+
+                <div class="list-upload">
+                    <ul>
+                        {%for uploaded_requirement in uploaded_requirements%}
+                            <li class="file-list image">
+                                <div class="thumbnail">
+                                    <ion-icon name="image"></ion-icon>
+                                    <span class="completed">
+                                        <ion-icon name="checkmark"></ion-icon>
+                                    </span>
+                                </div>
+                                <div class="properties">
+                                    <span class="title"><strong>{{uploaded_requirement.filename}}</strong></span>
+                                    <span class="size">{{uploaded_requirement.requirement.size|btos}}</span>
+                                    <span class="progress">
+                                        <span class="buffer"></span>
+                                        <span class="percentage">100%</span>
+                                    </span>
+                                </div>
+                                <button id="{{uploaded_requirement.pk}}" for="{{uploaded_requirement.filename}}" type="button" class="remove" uploaded>
+                                    <ion-icon name="close"></ion-icon>
+                                </button>
+                            </li>
+                        {%endfor%}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+    </form>
+    <div class="button-group">
+        <a href="{%url 'client:permit-application' previous_pk %}" class="form-button add">Back</a>
+        <a href="{%url 'client:permit-application-summary' previous_pk %}" class="form-button add">Proceed</a>
+        
+    </div>
+    <div class="footer">
+        <small>Please ensure that ALL required documents are properly attached and fill out ALL necessary information. Incomplete data on application form and/or 
+            requirements will be returned to the applicant / will not be processed.</small> 
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts%}
+{% endblock %}

@@ -1,0 +1,331 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{%block style%}
+    <link rel="stylesheet" href="{%static 'client_application/css/permit-application.css'%}">
+{%endblock%}
+
+{%block title%}
+Permit Application
+{%endblock%}
+
+{%block content%}
+{%include 'header.html'%}
+<div class="container">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+
+        <div class="content" first>
+            <div class="content-header-box">
+                Busines Information and Registration
+            </div>
+            <div class="content-body-box">
+                {%for field in business_information_registration%}
+                    <div class="form-group">
+                        {{field}}
+                        <label for="{{field.auto_id}}">{{field.label}}</label>
+                    </div>  
+                {%endfor%}
+                
+                <div class="form-group-select">
+                    <label for="business_type_id">Type of business</label>
+                    <div class="select-wrapper">
+                        <select name="business_type" id="business_type_id" required>
+                            <option value="1">Sole Proprietorship</option>
+                            <option value="2">Partnership</option>
+                            <option value="3">Corporation</option>
+                            <option value="4">Cooperative</option>
+                        </select>
+                    <span class="custom-arrow"></span>
+                    </div>
+                    
+                </div>
+        
+                <div class="form-group-radio">
+                    <div class="label-radio">For Corporation</div>
+                    <label>
+                        <input type="radio" id="filipino_id" name="filipino"/>
+                        <span class="design"></span>
+                        <span class="text">Filipino</span>
+                    </label>
+                    <label>
+                        <input type="radio" id="foreign_id" name="foreign"/>
+                        <span class="design"></span>
+                        <span class="text">Foreign</span>
+                    </label>
+                
+                </div>
+            
+                
+                <div class="contact-details-box">
+                    {%for field in contact_details%}
+                    <div class="form-group">
+                        {{field}}
+                        <label for="{{field.auto_id}}">{{field.label}}</label>
+                    </div>  
+                {%endfor%}
+                </div>
+
+            </div>
+        </div>
+        <div class="content" second>
+            <div class="content-header-box">
+                Business Address
+            </div>
+            <div class="content-body-box">
+                {%for field in business_address%}
+                    <div class="form-group">
+                        {{field}}
+                        <label for="{{field.auto_id}}">{{field.label}}</label>
+                    </div>  
+                {%endfor%}
+            </div>
+
+
+        </div>
+        <div class="content" third>
+            <div class="content-header-box">
+                <span>Owner's</span> Name
+            </div>
+            <div class="content-body-box">
+                {%for field in owner_information%}
+                    <div class="form-group">
+                        {{field}}
+                        <label for="{{field.auto_id}}">{{field.label}}</label>
+                    </div>  
+                {%endfor%}
+                <div class="form-group-select">
+                    <div class="select-wrapper">
+                        <select name="sex" id="id_sex" required>
+                            <option value="0">Gender</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                            
+                        </select>
+                    <span class="custom-arrow"></span>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="content" fourth>
+            <div class="content-header-box">
+                <span>Business Operations</span>
+            </div>
+            
+            <div class="content-body-box">
+                <div class="check-boxes">
+                    {%for field in business_check_boxes%}
+                        <div class="form-group-check-box">
+                            <label for="{{field.auto_id}}">{{field.label}}</label>
+                            {{field}}
+                            
+                        </div>  
+                    {%endfor%}
+                </div>
+                {%for field in business_operation%}
+                    <div class="form-group">
+                        {{field}}
+                        <label for="{{field.auto_id}}">{{field.label}}</label>
+                    </div>  
+                {%endfor%}
+                <div class="employee-count">
+                    <div class="label-div">No. of employees</div>
+                    {%for field in employee_count%}
+                        <div class="form-group">
+                            {{field}}
+                            <label for="{{field.auto_id}}">{{field.label}}</label>
+                        </div>  
+                    {%endfor%}
+                </div>
+                <div class="vehicle-count">
+                    <div class="label-div">No. of vehicles</div>
+                    {%for field in vehicle_count%}
+                        <div class="form-group">
+                            {{field}}
+                            <label for="{{field.auto_id}}">{{field.label}}</label>
+                        </div>  
+                    {%endfor%}
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="content" fifth>
+            <div class="content-header-box">
+                <span>Requirements</span>
+            </div>
+            
+            <div class="content-body-box">
+
+                 <div class="file-upload">
+                     <input type="file" class="file-input" accept="image/*,.pdf" multiple>
+                     <div class="icon">
+                        <ion-icon name="cloud-upload"></ion-icon>
+                     </div>
+                     <h3>Drag & drop files here</h3>
+                     <span>or</span>
+                     <strong>Browse</strong>
+                     <button class="remove">
+                         <ion-icon name="add"></ion-icon>
+                     </button>
+                 </div>
+
+                 <div class="list-upload">
+                     <ul>
+                        
+                     </ul>
+                 </div>
+
+            </div>
+
+        </div>
+    
+        <button id="submit-btn" type="button">Submit</button>
+    </form>
+    
+
+</div>
+
+    
+
+{%endblock%}
+
+{%block scripts%}
+    <script>
+        $(document).ready(function(){
+            const form = $('form');
+            const btn = $('#submit-btn');
+            const url = window.location.href;
+            btn.click(e=>{
+                form.submit();
+            })
+            form.on('submit', e=>{
+                
+                e.preventDefault();
+                e.target.submit();
+                
+            });
+            
+            $('.file-input').on('change', e=>{
+                let allowed_mime_types = [];
+                let allowed_size_mb = 100 * 1024 * 1024;
+
+                let files_input = Array.from($('.file-input')[0].files);
+                let files_length = files_input.length;
+
+                if(files_length == 0){
+                    alert('No files selected');
+                    return;
+                }
+
+                for(let i = 0; i < files_length; i++){
+                    let file = files_input[i];
+                    
+
+                    if(file.size > allowed_size_mb){
+                        alert('Exceed size' + file.name);
+                        return;
+                    }
+
+                    console.log(file);
+                    let uniq = 'id-' + btoa(file.name).replace(/=/g, '');
+                    let filetype = (/(image.*)+$/.test(file.type)) ? 'image' : 'pdf';
+                    console.log(filetype);
+                    let li = `
+                    <li class="file-list ${filetype}" id="${uniq}" data-filename=${file.name} >
+                        <div class="thumbnail">
+                            <ion-icon name="document"></ion-icon>
+                            <ion-icon name="image"></ion-icon>
+                            <span class="completed">
+                                <ion-icon name="checkmark"></ion-icon>
+                            </span>
+       
+                        </div>
+                        <div class="properties">
+                            <span class="title"><strong>${file.name}</strong></span>
+                            <span class="size">${bytesToSize(file.size)}</span>
+                            <span class="progress">
+                                <span class="buffer"></span>
+                                <span class="percentage"></span>
+                            </span>
+                        </div>
+                        <button type="button" class="remove">
+                           <ion-icon name="close"></ion-icon>
+                       </button>
+                    </li>`;
+
+                    let prev_list = $('.list-upload ul');
+                    prev_list.html(li + prev_list.html());
+
+
+                    let li_element = $('#'+uniq);
+                    let name = li_element.find('.title strong');
+                    let size = li_element.find('.size');
+                    let csrf_token = $('input[name=csrfmiddlewaretoken]').val();
+                    console.log(csrf_token);
+                    var upload_data = new FormData();
+                    upload_data.append('fileuploading', true);
+                    upload_data.append('file', file);
+                    upload_data.append('csrfmiddlewaretoken',csrf_token);
+
+                    var xhr = new XMLHttpRequest();
+                    console.log(xhr);
+                    //Initialize the request
+                    xhr.open('POST', url);
+                    
+                    xhr.upload.onprogress = (e) =>{
+                        let li_el = $('#' + uniq);
+                        let percentage = Math.ceil((e.loaded / e.total) * 100);
+                        
+                        li_el.find('.buffer').css('width', percentage + '%');
+                        li_el.find('.percentage').html(percentage + '%');
+
+                        if(e.loaded == e.total){
+                            li_el.find('.completed').css('display', 'flex');
+
+                            let remove_file = li_el.find('.remove');
+
+                            remove_file.css('display', 'flex');
+
+                            remove_file.on('click', (e) =>{
+                                let remove_data = new FormData();
+                                remove_data.append('requestremove', true);
+                                remove_data.append('removefile', file.name);
+                                remove_data.append('csrfmiddlewaretoken', csrf_token);
+                                let remove_request = new XMLHttpRequest();
+                                remove_request.open('POST', url);
+
+                                remove_request.onload = (e) =>{
+                                    console.log(this.responseText);
+                                    li_el.remove();
+                                };
+                                remove_request.send(remove_data);
+                    
+                            })
+                            
+                        }
+                        
+                    }
+
+                    xhr.onload = (e) =>{
+                        console.log(e);
+                        console.log(xhr.responseText);
+                    }
+                    xhr.send(upload_data);
+                    
+                }
+
+            })
+        })
+        
+        const bytesToSize = (bytes) =>{
+            let sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            if(bytes == 0) return '0 Byte';
+            let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+            return Math.round(bytes/ Math.pow(1024, i), 2) + ' ' + sizes[i];
+        }
+       
+    </script>
+{%endblock%}

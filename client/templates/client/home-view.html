@@ -1,0 +1,199 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load conversion%}
+
+{%block style%}
+    <link rel="stylesheet" href="{%static 'system/css/home-view.css'%}">
+    <script src="{%static 'client_application/js/home.js'%}" defer></script>
+{%endblock%}
+
+{%block content%}
+
+
+{%include 'side-bar.html'%}
+<div class="container">
+    <div class="container-top">
+        <div class="title">
+            <h2>Home</h2>
+        </div>
+        <div class="others">
+            <span class="time">Hello, {{name}}</span>
+        </div>
+        
+    </div> 
+
+    <div class="container-body">
+    
+
+        <div class="content" main>
+            <div class="content-head">
+                <div class="title">
+                    <h4>Submitted Application</h4>
+                </div>
+                <div class="loader"></div>
+                
+            </div>
+            <div class="content-body">
+                
+                <div class="row-card head">
+                    <div class="head-col"><p>No</p> </div>
+
+                    <div class="head-col"><p>Name</p></div>
+
+                    <div class="head-col"><p>Timestamp</p></div>
+
+                    <div class="head-col"><p>Status</p></div>
+                    <div class="head-col"><p>Action</p></div>
+                </div>
+
+                <div id="application-list" class="row-card-list">
+                    
+                    {%for obj in page_objects%}
+
+                    <div class="row-card data" id="row-{{obj.1.pk}}">
+                        
+                        <div class="data-col"><p>{{obj.0}}</p></div>
+
+                        <div class="data-col"><p>{{obj.1.business_name}}</p></div>
+
+                        <div class="data-col">
+                            <p class="date">{{obj.1.submission_timestamp|date_format}}</p>
+                            <p class="time">{{obj.1.submission_timestamp|twelve_hour}}</p>
+                        
+                        </div>
+
+                        <div class="data-col {{obj.1.submission_status}}">
+                            <p>{{obj.1.submission_status|title}}</p>
+                        </div>
+
+                        <div class="data-col">
+                            <a href="{%url 'client:permit-application-summary' obj.1.pk%}"class="button-data-col">View</a>
+                        </div>
+                        
+                    </div>
+
+                {%endfor%}
+                </div>
+
+                
+            
+            </div>
+            <div class="content-bottom">
+                <span class="bottom-description">
+                    Page <span id="current-page">{{page_objects.number}}</span> of <span id="total-pages">{{page_objects.paginator.num_pages}}</span> 
+                </span>
+
+                <div class="pagination-group">
+                    <div id="prev-group" class="button-prev-group {% if not page_objects.has_previous %} hidden {% endif %}">
+                        <button type="button" onclick="get_page(this.getAttribute('page'), this)" name="first" page="1" >&laquo; First</button>
+                        <button type="button" onclick="get_page(this.getAttribute('page'), this)" name="prev" page="{% if page_objects.has_previous %} {{page_objects.previous_page_number}}  {% endif %} " >Previous</button>
+                    </div>
+                    
+
+                    
+                    <div id="next-group" class="button-next-group {% if not page_objects.has_next %} hidden {% endif %}">
+                        <button type="button" onclick="get_page(this.getAttribute('page'), this)" name="next" page="{% if page_objects.has_next %} {{ page_objects.next_page_number}}{% endif %}" >Next</button>
+                        <button type="button" onclick="get_page(this.getAttribute('page'), this)" name="last" page="{{page_objects.paginator.num_pages}}" >Last &raquo;</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="content">
+                <div class="content-head">
+                    <div class="title">
+                        <h4>Apply for business permit</h4>
+                    </div>
+                
+                    
+                </div>
+                <div class="content-body">
+                    <div class="row-card">
+                        <div class="new-permit">
+                            <span>
+                                New
+                            </span>
+                            <a class="apply-btn" href="{%url 'client:permit-application' new%}">
+                                <i class='bx bxs-plus-square'></i>
+                            </a>
+                            
+                        </div>
+                        <div class="new-permit">
+                            <span>
+                                Renewal
+                            </span>
+                            <a class="apply-btn" href="">
+                                <i class='bx bxs-business'></i>
+                            </a>
+                            
+                        </div>
+                        
+                    
+                    </div>
+                </div>
+               
+            </div>
+            <div class="content">
+                <div class="content-header">
+                    <div class="title">
+                        <h4>Total No. of</h4>
+                    </div>
+                
+                </div>
+                <div class="content-body">
+                    <div class="row-card">
+                        <div class="card">
+                            <i class='bx bx-file'></i>
+                            <div class="description">
+                                <h4 class="description-count">
+                                    {{count}}
+                                </h4>
+                                <span class="description-name">
+                                    Number of application
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-card">
+                        <div class="card">
+                            <i class='bx bx-check-shield'></i>
+                            <div class="description">
+                                <h4 class="description-count">
+                                    {{PERMIT_AGGR.verified}}
+                                </h4>
+                                <span class="description-name">
+                                    Number of verified applications
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-card">
+                        <div class="card">
+                            <i class='bx bx-error-circle'></i>
+                            <div class="description">
+                                <h4 class="description-count">
+                                    {{PERMIT_AGGR.denied}}
+                                </h4>
+                                <span class="description-name">
+                                    Number of denied applications
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+
+
+</div>
+    
+{%endblock%}
+
+{%block scripts%}
+
+{%endblock scripts%}

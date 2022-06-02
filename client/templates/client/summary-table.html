@@ -1,0 +1,767 @@
+<div class="table-wrapper">
+    <div class="table-header">
+        APPLICATION FORM SUMMARY
+    </div>
+    <table>
+        <tr>
+            <td colspan="8">
+                <div class="header-col-wrapper">
+                    Business Information and registration
+                </div>   
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div class="data-col-wrapper" flex>
+                    <div class="label-box">Business Type:</div>
+                    {%for type in business_types %}
+                        <div class="entity-group-check">
+                            {% if type == business_type %}
+                                <ion-icon class="ion-icon" name="checkbox"></ion-icon>
+                            {%else%}
+                                <ion-icon name="square-outline"></ion-icon>
+                            {%endif%}
+                            <div class="value-box">
+                                {{type}}
+                            </div>
+                        </div>
+                    {%endfor%}
+                    
+            </td>
+            
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div class="data-col-wrapper" flex>
+                    <div class="label-box">Corporation Type(if applicable)</div>
+
+                    <div class="entity-group-check">
+                        {%if permit_application.business_type == '3'%}
+                            {% if permit_application.corporation_type == '1' %}
+                                <ion-icon class="ion-icon" name="checkbox"></ion-icon>
+                            {%endif%}
+                        {%else%}
+                            <ion-icon name="square-outline"></ion-icon>
+                        {%endif%}
+                        <div class="value-box">
+                            Filipino
+                        </div>
+                    </div>
+                    <div class="entity-group-check">
+                        {%if permit_application.business_type == '3'%}
+                            {% if permit_application.corporation_type == '2' %}
+                                <ion-icon class="ion-icon" name="checkbox"></ion-icon>
+                            {%endif%}
+                        {%else%}
+                            <ion-icon name="square-outline"></ion-icon>
+                        {%endif%}
+                        <div class="value-box">
+                            Foreign
+                        </div>
+                    </div>
+                  
+                </div>
+            </td>
+            
+        </tr>
+
+        <tr>
+            <td colspan="4">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            DTI / SEC / CDA Registration Number:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.registration_number}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="4">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Tax Identification Number (TIN):
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.tax_id_number}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+    
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Business Name:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.business_name}}
+                        </div>
+                    </div>
+                </div>
+
+
+            </td>
+            
+            
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Franchise/Trade Name:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.trade_name}}
+                        </div>
+                    </div>
+                </div>
+
+
+            </td>
+            
+            
+        </tr>
+        <tr>
+            
+            <td colspan="8">
+                <div class="header-col-wrapper">
+                    Business Taxpayer Information
+                </div>   
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Email Address:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.email_address}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="3">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Mobile No.:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.mobile_no}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="3">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Tel No.:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.tel_no}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Surname:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.surname}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="2">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Given Name:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.given_name}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="2">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Middle Name
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.middle_name}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="2">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Gender:
+                        </div>
+                        <div class="value-box">
+                            {%if permit_application.sex == 'M'%}
+                                Male 
+                            {%else%}
+                                Female 
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div class="header-col-wrapper">
+                    Business Location Address
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            House/Bldg No.
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.house_bldg_no}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="4">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Name of building:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.blgd_name}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="1">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Block No.
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.block_no}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+
+            <td colspan="1">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Lot No.
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.lot_no}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Street:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.street}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="3">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Barangay:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.barangay}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="3">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Subdivision:
+                        </div>
+                        <div class="value-box">
+                            Citta Maria
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+
+    
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            City:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.city}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="4">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Province:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.province}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="1">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Zip Code:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.zip_code}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+
+    
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div class="header-col-wrapper">
+                    Business Operation
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <div class="data-col-wrapper" flex>
+                    <div class="label-box">
+                        Owned?
+                    </div>
+                    <div class="entity-group-check">
+                        {% if permit_application.owned %}
+                            <ion-icon class="ion-icon" name="checkbox"></ion-icon>
+                        {%else%}
+                            <ion-icon class="ion-icon" name="square-outline"></ion-icon>
+                        {%endif%}
+                        <div class="value-box">
+                            Yes
+                        </div>
+                    </div>
+                    <div class="entity-group">
+                        {% if not permit_application.owned %}
+                            <ion-icon class="ion-icon" name="checkbox"></ion-icon>
+                        {%else%}
+                            <ion-icon class="ion-icon" name="square-outline"></ion-icon>
+                        {%endif%}
+                        <div class="value-box">
+                            No
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="1">
+                <div class="data-col-wrapper" flex>
+                    <div class="label-box">
+                        The business rents a property?
+                    </div>
+                    <div class="entity-group-check">
+                        {% if permit_application.rented %}
+                            <ion-icon class="ion-icon" name="checkbox"></ion-icon>
+                        {%else%}
+                            <ion-icon class="ion-icon" name="square-outline"></ion-icon>
+                        {%endif%}
+                        <div class="value-box">
+                            Yes
+                        </div>
+                    </div>
+                    <div class="entity-group">
+                        {% if not permit_application.rented %}
+                            <ion-icon class="ion-icon" name="checkbox"></ion-icon>
+                        {%else%}
+                            <ion-icon class="ion-icon" name="square-outline"></ion-icon>
+                        {%endif%}
+                        <div class="value-box">
+                            No
+                        </div>
+                    </div>
+                </div>
+            </td>
+           
+            <td colspan="5">
+                <div class="data-col-wrapper" flex>
+                    <div class="label-box">
+                        Do you have tax incentives from any Government Entity? 
+                    </div>
+                    <div class="entity-group-check">
+                        {% if permit_application.tax_incentives %}
+                            <ion-icon class="ion-icon" name="checkbox"></ion-icon>
+                        {%else%}
+                            <ion-icon class="ion-icon" name="square-outline"></ion-icon>
+                        {%endif%}
+                        <div class="value-box">
+                            Yes
+                        </div>
+                    </div>
+                    <div class="entity-group">
+                        {% if not permit_application.tax_incentives %}
+                            <ion-icon class="ion-icon" name="checkbox"></ion-icon>
+                        {%else%}
+                            <ion-icon class="ion-icon" name="square-outline"></ion-icon>
+                        {%endif%}
+                        <div class="value-box">
+                            No
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            
+            <td colspan="2">
+                <div class="data-col-wrapper" flex>
+                    
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Tax Declaration No.
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.tax_declaration}}
+                        </div>
+                    </div>
+                   
+                    
+                </div>
+            </td>
+            <td colspan="2">
+                <div class="data-col-wrapper" flex>
+                    
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Property Identification No.
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.property_ident_no}}
+                        </div>
+                    </div>
+                   
+                    
+                </div>
+            </td>
+            <td colspan="3">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Total Capital Investment:
+                        </div>
+                        <div class="value-box">
+                            P {{permit_application.capital_investment}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            
+            
+            <td colspan="4">
+                <div class="data-col-wrapper" flex>
+                    <div class="label-box">Total No. of Employees:</div>
+                    <div class="value-box">
+                        {{total_no_emp}}
+                    </div>
+                </div>
+            </td>
+            <td colspan="3">
+                <div class="data-col-wrapper" flex>
+                    <div class="label-box">No. of Delivery Vehicles:</div>
+                    <div class="value-box">
+                        {{total_no_vehicle}}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        
+       <tr>
+           
+        
+           <td colspan="1">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Male:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.male_emp_count}}
+                        </div>
+                    </div>
+                </div>
+           </td>
+           <td colspan="1">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Female:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.female_emp_count}}
+                        </div>
+                    </div>
+                </div>
+           </td>
+           <td colspan="2">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Residing in Tanauan City:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.tanauan_emp_count}}
+                        </div>
+                    </div>
+                </div>
+           </td>
+           
+           <td colspan="2">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Vans/Truck:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.van_truck_count}}
+                        </div>
+                    </div>
+                </div>
+           </td>
+           
+           <td colspan="1">
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Motorcycles:
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.motorcycle_count}}
+                        </div>
+                    </div>
+                </div>
+           </td>
+           
+       </tr>
+       <tr>
+            <td colspan='4'>
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Business Area (in sq. m.):
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.business_area}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan='3'>
+                <div class="data-col-wrapper" flex>
+                    <div class="entity-group">
+                        <div class="label-box">
+                            Total Floor Area (in sq.m.):
+                        </div>
+                        <div class="value-box">
+                            {{permit_application.total_floor_area}}
+                        </div>
+                    </div>
+                </div>
+           </td>
+       </tr>
+       
+       <tr>
+           <td>
+               <div class="header-col-wrapper">
+                   Code
+               </div>
+           </td>
+           <td colspan="2">
+               <div class="header-col-wrapper">
+                   Line of Business
+               </div>
+           </td>
+           <td>
+               <div class="header-col-wrapper">
+                   Capital
+               </div>
+           </td>
+           <td>
+               <div class="header-col-wrapper">
+                   No. of Units
+               </div>
+           </td>
+           <td>
+               <div class="header-col-wrapper">
+                Essential
+               </div>
+           </td>
+           <td>
+               <div class="header-col-wrapper">
+                   Non-Essential
+               </div>
+           </td>
+       </tr>
+       {%for act in business_activities%}
+       <tr>
+
+            <td>
+                <div class="data-col-wrapper">
+                    <div class="value-box">
+                        {{act.code}}
+                    </div>
+                </div>
+            </td>
+            <td colspan="2">
+                <div class="data-col-wrapper">
+                    <div class="value-box">
+                        {{act.business_line}}
+                    </div>
+
+                    
+                </div>
+            </td>
+            <td>
+                <div class="data-col-wrapper">
+                    <div class="value-box">
+                        P {{act.capital_investment}}
+                    </div>
+
+                    
+                </div>
+            </td>
+            <td>
+                <div class="data-col-wrapper">
+                    <div class="value-box">
+                        {{act.no_units}}
+                    
+                    </div>
+                    
+                </div>
+            </td>
+            <td>
+                <div class="data-col-wrapper">
+                    <div class="value-box">
+                        {{act.essential}}
+                
+                    </div>
+                
+                </div>
+            </td>
+            <td>
+                <div class="data-col-wrapper">
+                    <div class="value-box">
+                        {{act.non_essential}}
+                    
+                    </div>
+                    
+                </div>
+            </td>
+    </tr>
+
+       {% endfor%}
+       
+      
+    </table>
+    <div class="button-wrapper">
+        {%if user_type == 'applicant'%}
+            {%if not permit_application.is_submitted%}
+                <a class="form-button info" href="{% url 'client:permit-operation-requirements'%}">Back</a>
+                <form action="" method="POST">
+                    {%csrf_token%}
+                    <input type="hidden" name="submit" value="True">
+                    <button type="submit" class="form-button add">Submit</button>
+                </form>
+            {%else%}
+            <div class="msg-box">
+                This form is already submitted
+            </div>
+            {%endif%}
+        {%else%}
+            <a class="form-button info" href="{% url 'staff:home'%}">Back</a>
+            
+            
+            {%if permit_application.is_verified%}  
+                <div class="msg-box">
+                    This form is already evaluated
+                </div>
+                
+            {%elif permit_application.is_denied%}
+                <div class="msg-box">
+                    This form is already evaluated
+                </div>
+            {%else%}
+                            
+                <button type="button" id="verify" class="form-button add" pk="{{permit_application.pk}}" name="verify">verify</button>
+                <button type="button" id="deny" class="form-button delete" pk="{{permit_application.pk}}" name="deny">Deny</button>
+                
+                
+            {%endif%}
+        {%endif%}
+                
+
+        
+    </div>
+    <div class="info-footer">
+        <small>
+            This is a summary of all the data you have provided. If you wish to change something 
+            you may go back to the previous part. Please review all the details before submitting the form.
+
+        </small>
+        <small></small>
+    </div>
+    
+</div>

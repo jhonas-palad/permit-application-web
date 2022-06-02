@@ -1,0 +1,125 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load conversion%}
+
+{%block style%}
+    <link rel="stylesheet" href="{%static 'client_application/css/summary.css'%}">
+    <link rel="stylesheet" href="{%static 'client_application/css/summary-sidebar.css'%}">
+    <script type="module" src="{%static 'client_application/js/summary.js'%}" defer></script>
+    <script type="module" src="{%static 'client_application/js/evaluation.js'%}" defer></script>
+{%endblock%}
+
+
+{%block title%}
+    Summary
+{%endblock%}
+
+{%block content%}
+{%include 'side-bar.html'%}
+<div id="img-modal" class="img-modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption" class="caption"></div>
+</div>
+<div class="container">
+    
+    {%include 'client/summary-table.html'%}
+    <div class="summary-sidebar">
+        <div class="sum-sidebar-header-box">
+            Application Form details
+        </div>
+        <div class="sum-sidebar-body">
+            <div class="slider-names">
+                <div class="slider-name" detail>Details</div>
+                <div class="slider-name" image>Images</div>
+            </div>
+            <div class="slider-group">
+                <div class="slider active">
+                    <div class="slider-body">
+                        
+                        <div class="detail">
+                            <div class="detail-name">Application type:</div>
+                            <div class="detail-value">New</div>
+                        </div>
+                        <div class="detail">
+                            
+                            <div class="detail-name">Date of submission:</div>
+                            {%if permit_application.submission_timestamp%}
+                                <div class="detail-value">{{permit_application.submission_timestamp|date_format}}</div>
+                            {%endif%}
+                        </div>
+                        <div class="detail">
+                            <div  class="detail-name">Status:</div>
+                            {%if permit_application.submission_status%}
+                                <div id="status-detail" class="detail-value">{{permit_application.submission_status|title}}</div>
+                            {%endif%}
+                        </div>
+                        <div class="detail">
+                            <div class="detail-name">No. of Files uploaded:</div>
+                            <div class="detail-value">{{uploaded_requirements.count}}</div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="slider hidden">
+                    <div class="slider-body">
+                        {%for path in uploaded_requirements%}
+                        <div class="image-group">
+                            <img class="img-gallery" src="{%get_media_prefix%}{{path.requirement}}" width="50px" height="50px"alt="{{path.filename}}">
+                            <div class="properties">
+                                <div class="filename">{{path.filename}}</div>
+                                <div class="size">{{path.requirement.size|btos}}</div>
+                            </div>
+                        </div>
+                            
+                        {%endfor%}
+    
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    
+    
+    
+</div>
+
+{%endblock%}
+
+{%block scripts%}
+    <script>
+        let modal = $('#img-modal');
+        let img = $('#img01');
+        let caption = $('#caption');
+
+        let images = [...$('.img-gallery')];
+        
+
+        images.forEach((image) =>{
+            console.log(typeof image);
+            image.onclick = (e) =>{
+                let _image = $(image);
+                modal.addClass('show');
+                img.attr('src', _image.attr('src'));
+                caption.text(_image.attr('alt'));
+                
+            }
+        });
+
+        let modal_span_close = modal.find('.close')[0];
+
+        modal_span_close.onclick = (e) =>{
+            $('html').removeClass('hidden');
+            modal.removeClass('show')
+        };
+        
+        let back_btn = $('#back-btn')[0];
+
+
+    </script>
+   
+{%endblock%}

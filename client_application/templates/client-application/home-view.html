@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block style%}
+    <link rel="stylesheet" href="{%static 'client_application/css/home-view.css'%}">
+{%endblock%}
+
+{%block content%}
+{%include 'header.html'%}
+<div class="container">
+    <div class="content-box">
+        <div class="top-content">
+            Apply for business permit
+        </div>
+        <div class="body-content">
+            <div class="application-btn-group">
+                <div class="new-application-btn">
+                    <a href="{%url 'client-application:permit-application' pk%}">New Permit</a>
+                </div>
+                <div class="new-application-btn">
+                    <a href="">Renew Permit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{%endblock%}
+
+{%block scripts%}
+
+{%endblock scripts%}

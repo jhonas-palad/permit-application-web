@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block style%}
+    <style>
+        body{
+            background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url("{%static 'system/img/city_hall.jpg'%}");
+
+            background-size: cover;
+            background-position:center;
+            
+        }
+        
+    </style>
+    <link rel="stylesheet" href="{%static 'system_auth/css/sign-in.css'%}">
+    <link rel="stylesheet" href="{%static 'system_auth/css/auth_base.css'%}">
+
+{%endblock%}
+
+{% block title%}Sign in{%endblock%}
+{% block content%}
+<div class="container">
+    <div class="body-content">
+        <div class="top-container">
+            <div class="logo">
+                <img src="{%static 'system/img/tc_logo.png'%}" alt="">
+            </div>
+            <div class="title">
+                Sign in
+            </div>
+            <div class="description">
+                User your account
+            </div>
+        </div>
+        <div class="form-content">
+            <form action="" method="POST">
+                {%csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="email_user" id="email_user_id" onkeyup="this.setAttribute('value',this.value);" value required>
+                    <label for="email_user_id">Email or username</label>
+                    <div class="input-msg">Email or username is required</div>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password_login" id="password_login_id" onkeyup="this.setAttribute('value',this.value);" value required>
+                    <label for="password_login_id">Password</label>
+                    <div class="input-msg">Password is required</div>
+                </div>
+            </form>
+
+        </div>
+        <div class="bottom-content-auth">
+            <div class="bottom-link">
+                <a href="{%url 'system_auth:sign-up'%}">Create an account instead</a>
+            </div>
+            
+            <button type="button" sign-in>Sign in</button>
+            
+        </div>
+
+    </div>
+    
+
+    </div>
+</div>
+{%endblock%}
+{% block scripts%}
+    <script type="module" src="{%static 'system_auth/js/sign-in.js'%}"></script>
+    
+
+{%endblock%}

@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<form action="" method="POST">
+    {%csrf_token%}
+
+    <button type="submit">Submit</button>
+</form>
+<button type="button">Remove cookie</button>
+
+
+
+{%endblock%}
+{%block scripts%}
+<script>
+    $('button').on('click', (e)=>{
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                remove_cookies: true 
+            },
+            url: window.location.href,
+            complete: (e, status) =>{
+                console.log(e);
+                console.log(status);
+            }
+        })
+    })
+</script>
+
+{%endblock%}

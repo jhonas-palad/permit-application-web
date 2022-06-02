@@ -1,0 +1,153 @@
+.summary-sidebar{
+    position:fixed;
+    height: 100%;
+    max-width: 250px; 
+    right: 0;
+    top:0;
+    background-color:#ffff;
+}
+
+.sum-sidebar-header-box{
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: var(--normal);
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.sum-sidebar-body{
+    position:relative;
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.slider-names{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+
+}
+.slider-names .slider-name{
+    font-size: var(--small);
+    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+
+    cursor: pointer;
+}
+
+
+.slider-names .slider-name:hover{
+
+    border-bottom:3px solid var(--main-color);
+}
+.slider-names .slider-name[clicked=true]{
+
+    border-bottom:3px solid var(--main-color);
+}
+
+
+.slider-group{
+    overflow:hidden;
+    position: relative;
+    width: 100%;
+
+}
+
+.slider{
+    border-radius: .5rem;
+    padding: .85rem;
+    margin: 0 auto;
+    animation: fade 250ms ease-in-out forwards;
+}
+.slider.active{
+    animation: slide 250ms 125ms ease-in-out both;
+}
+.slider-body{
+    height: 800px;
+    overflow-y:auto;
+    display: block;
+}
+
+
+.slider-body .detail{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size:var(--small);
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+
+}
+
+
+.slider-body .image-group{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.45rem;
+    border-bottom: 1px solid #ccc;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+}
+
+.slider-body .image-group .properties{
+    
+    display: block;
+}
+.properties .filename{
+    font-size: var(--xsmall);
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+.properties .size{
+    font-size: var(--xxsmall);
+    font-weight: light;
+    margin-bottom: 2px;
+}
+.detail .detail-name{
+    font-weight: bold;
+}
+.hidden{
+    display:none;
+}
+
+
+
+
+
+@keyframes slide {
+    0% {
+        transform: translateX(200%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(.75);
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
